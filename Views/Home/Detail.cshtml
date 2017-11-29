@@ -1,0 +1,10 @@
+﻿@model WebApplication5.Models.Article
+@{
+    ViewBag.Title = Html.DisplayFor(model=>model.Title);
+}
+
+<h2>@Html.DisplayFor(model=>model.Title)</h2>
+<h6><i class="glyphicon glyphicon-user"></i>@Html.DisplayFor(model=>model.Member.firstname)  @Html.DisplayFor(model=>model.Member.lastname)<i class="glyphicon glyphicon-calendar"></i> @Html.DisplayFor(model=>model.Date)</h6>
+<hr />
+@Html.Raw(Model.Detail)
+

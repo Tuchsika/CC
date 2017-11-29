@@ -1,0 +1,19 @@
+﻿@model List<WebApplication5.Models.Article>
+@{
+    ViewBag.Title = "MyBoard";
+}
+
+<h2>MyBoard</h2>
+
+@{ 
+    <table class="table table-bordered">
+        @foreach(var i in Model)
+        {
+            <tr>
+                <td>@i.Title</td>
+                <td align="center">@i.Date.ToShortDateString()</td>
+                <td align="center"><a href="@Url.Action("Detail","Home",new{id=i.Id})" class="">ดูโพสต์</a></td>
+            </tr>
+        }
+    </table>
+}

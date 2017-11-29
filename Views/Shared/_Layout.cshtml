@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ASP-NET</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Other.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-4357781196979161",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        body {
+            padding-top: 70px;
+        }
+        i{
+            margin-right:5px;
+            margin-left:5px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("TEACHASP.NETh", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#"><span class="glyphicon glyphicon-list-alt"></span> บทเรียนออนไลน์</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-9">
+            @RenderBody()
+            </div>
+            <div class="col-md-3">
+                @{
+                    if (Session["Email"]==null)
+                    {
+                        <h4>My Profile</h4>
+                        <hr />
+                        using (Html.BeginForm("Login","Account"))
+                        {
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon" id="basic-addon1">ชื่อผู้ใช้&nbsp;&nbsp;</span>
+                                <input type="text" class="form-control" name="username" placeholder="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <br />
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon" id="basic-addon1">รหัสผ่าน</span>
+                                <input type="password" class="form-control" name="password" placeholder="Username" aria-describedby="basic-addon1">
+                                @*<label>รหัสผู้ใช้งาน</label>
+                                <span class="input-group-addon" id="basic-addon1">#</span>
+                                <input type="password" name="password" aria-describedby="basic-addon1" class="form-control" />*@
+                            </div>
+                            <br />
+                            <div>
+                                <span>@ViewBag.SError</span>
+                                <input type="submit" value="ลงชื่อเข้าใช้งาน" class="btn btn-default" />
+                                <a href="@Url.Action("Register","Home")" id="Reg">ลงทะเบียนเข้าใช้งาน</a>
+                            </div>
+                            
+                        }
+                    }
+                    if (Session["Email"] != null)
+                    {
+                        <h1 style="text-align:center;"><i class="glyphicon glyphicon-user"></i> My Profile</h1>
+                        <div class="form-group">
+                            
+                        </div>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li role="presentation" class="active" style="">
+                                <a href="#">    
+                                    สวัสดี : @Session["Fname"].ToString() @Session["Lname"].ToString()
+                                 </a>
+                            </li>
+                            <li role="presentation" class=""><a href="@Url.Action("Create","Home")"><i class="glyphicon glyphicon-edit"></i>เพิ่มสถานที่ท่องเที่ยว</a></li>
+                            <li role="presentation"><a href="@Url.Action("MyBoard","Home")"><i class="glyphicon glyphicon-envelope"> </i>กระทู้ของฉัน</a></li>
+                            <li role="presentation"> <a href="@Url.Action("Logout","Account")"><i class="glyphicon glyphicon-off"></i>ลงชื่อออก</a></li>
+                        </ul>
+                    }
+
+                }
+                
+            </div>
+        </div>
+        
+        <hr />
+        <footer>
+            <p style="text-align:center;">&copy; @DateTime.Now.Year - สวัสดีต่ะเว็บไซต์สำหรับแชร์ความรู้ต่างๆ ไม่ว่าจะเป็นด้านการศึกษา ด้านการท่องเที่ยว อื่นๆอีกมากมายก็สามารถที่จะใช้เว็บนี้ในการแชร์ความรู้ของคุณได้ที่นี่ วิชานี้เป็นส่วนหนึ่งของวิชา CE305 โดย Anchalee Seesoon 560307030045 </p>
+        </footer>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

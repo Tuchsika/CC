@@ -1,0 +1,22 @@
+﻿@using WebApplication5.Models;
+@using PagedList;
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "หน้าแรก";
+}
+@model PagedList.IPagedList<Article>
+@{ 
+    foreach (var i in Model)
+    {
+            <div class="col-md-12" style="border:1px solid #dddfe2;border-radius:3px;margin-bottom:10px;position:relative;">
+                <div class="panel-body">
+                    <a href="@Url.Action("Detail", "Home", new { id = i.Id })"><h3>@i.Title</h3></a>
+                </div>
+                <div style="position:absolute;top:10px;left:25px; color:#a3a3a3;"><i class="glyphicon glyphicon-calendar"></i>@i.Date <span class="badge">3</span></div>
+            </div>
+
+        }
+    }
+<div class="pagination">
+    @Html.PagedListPager(Model,page=>Url.Action("Index",new { page=page}))
+</div>
